@@ -1,0 +1,472 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NEON CC GEN | PROXARMY</title>
+    <meta name="description" content="Test Credit Card Generator">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700|Orbitron:500,700&display=swap">
+    <style type="text/css">
+        :root {
+            --neon-pink: #ff2a6d;
+            --neon-blue: #05d9e8;
+            --neon-purple: #d300c5;
+            --neon-green: #00ff9d;
+            --dark-bg: #0d0221;
+            --darker-bg: #05010f;
+        }
+        
+        html {
+            font-family: 'Orbitron', 'Lato', sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+            background: var(--dark-bg);
+            color: white;
+            min-height: 100vh;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            overflow-x: hidden;
+        }
+
+        .navigations {
+            display: flex;
+            background: linear-gradient(90deg, var(--neon-purple) 0%, var(--neon-blue) 100%);
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            margin-bottom: 40px;
+            box-shadow: 0 0 15px var(--neon-purple), 
+                         0 0 30px rgba(211, 0, 197, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navigations::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            animation: shine 5s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        .navigations font {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px var(--neon-blue),
+                         0 0 30px var(--neon-pink);
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(13, 2, 33, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 15px var(--neon-blue),
+                        inset 0 0 10px rgba(5, 217, 232, 0.2);
+            border: 1px solid var(--neon-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink), var(--neon-purple));
+            z-index: -1;
+            border-radius: 16px;
+            opacity: 0.7;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px var(--neon-blue),
+                       0 0 40px rgba(5, 217, 232, 0.4);
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border: 2px solid var(--neon-blue);
+            border-radius: 8px;
+            background: rgba(5, 217, 232, 0.05);
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 10px rgba(5, 217, 232, 0.1);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-color: var(--neon-pink);
+            outline: none;
+            box-shadow: 0 0 15px var(--neon-pink),
+                       0 0 25px rgba(255, 42, 109, 0.3);
+            background: rgba(255, 42, 109, 0.05);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            background: linear-gradient(90deg, var(--neon-purple) 0%, var(--neon-pink) 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(211, 0, 197, 0.5);
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        button:hover {
+            box-shadow: 0 0 20px var(--neon-purple),
+                       0 0 40px rgba(211, 0, 197, 0.3);
+            transform: translateY(-2px);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: linear-gradient(90deg, var(--neon-blue) 0%, var(--neon-green) 100%);
+            box-shadow: 0 0 15px rgba(5, 217, 232, 0.5);
+        }
+
+        button.secondary:hover {
+            box-shadow: 0 0 20px var(--neon-blue),
+                       0 0 40px rgba(5, 217, 232, 0.3);
+        }
+
+        .result {
+            background: rgba(0, 255, 157, 0.05);
+            border: 1px solid var(--neon-green);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            color: var(--neon-green);
+            font-family: monospace;
+            font-size: 14px;
+            word-break: break-all;
+            box-shadow: inset 0 0 10px rgba(0, 255, 157, 0.1),
+                        0 0 10px rgba(0, 255, 157, 0.1);
+            position: relative;
+        }
+
+        .result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            border-top: 1px solid rgba(5, 217, 232, 0.2);
+        }
+
+        .whatsapp-link {
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-link:hover {
+            text-shadow: 0 0 10px var(--neon-green);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .navigations font {
+                font-size: 20px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+            }
+        }
+
+        /* Glowing animation for title */
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 10px #fff,
+                             0 0 20px var(--neon-blue),
+                             0 0 30px var(--neon-pink);
+            }
+            50% {
+                text-shadow: 0 0 5px #fff,
+                             0 0 10px var(--neon-blue),
+                             0 0 15px var(--neon-pink);
+            }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        /* Pulse animation for cards */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 15px var(--neon-blue),
+                            inset 0 0 10px rgba(5, 217, 232, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 25px var(--neon-blue),
+                            inset 0 0 15px rgba(5, 217, 232, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 15px var(--neon-blue),
+                            inset 0 0 10px rgba(5, 217, 232, 0.2);
+            }
+        }
+
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <nav class="navigations">
+            <font class="glow">NEON CC GENERATOR</font>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card pulse">
+                        <h3 style="color: var(--neon-blue); margin-top: 0;">GENERATOR SETTINGS</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="cardType">CARD TYPE</label>
+                                <select id="cardType" class="form-control">
+                                    <option value="visa">VISA</option>
+                                    <option value="mastercard">MASTERCARD</option>
+                                    <option value="amex">AMERICAN EXPRESS</option>
+                                    <option value="discover">DISCOVER</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cardCount">NUMBER OF CARDS</label>
+                                <input type="number" id="cardCount" class="form-control" value="5" min="1" max="20">
+                            </div>
+                            
+                            <div class="btn-group">
+                                <button type="button" id="generateBtn">GENERATE</button>
+                                <button type="button" id="clearBtn" class="secondary">CLEAR</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <h3 style="color: var(--neon-pink); margin-top: 0;">GENERATED CARDS</h3>
+                        <div id="resultsContainer">
+                            <div class="result">
+                                <div style="text-align: center; color: rgba(255,255,255,0.5);">
+                                    Cards will appear here
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>FOR TESTING PURPOSES ONLY | <span class="whatsapp-link" id="proxarmyLink">PROXARMY</span></p>
+        </footer>
+    </div>
+
+    <script>
+        // WhatsApp Channel Link
+        document.getElementById('proxarmyLink').addEventListener('click', function() {
+            window.open('https://proxarmy.netlify.app/', '_blank');
+        });
+
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const cardType = document.getElementById('cardType').value;
+            const count = parseInt(document.getElementById('cardCount').value);
+            
+            // Clear previous results
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '';
+            
+            // Generate fake cards (for demonstration only)
+            for (let i = 0; i < count; i++) {
+                const cardNumber = generateCardNumber(cardType);
+                const expDate = generateExpiryDate();
+                const cvv = Math.floor(Math.random() * 900) + 100;
+                
+                const cardDiv = document.createElement('div');
+                cardDiv.className = 'result';
+                cardDiv.innerHTML = `
+                    <strong>${cardType.toUpperCase()}</strong><br>
+                    ${formatCardNumber(cardNumber)}<br>
+                    Exp: ${expDate} | CVV: ${cvv}<br>
+                    <small>${generateName()}</small>
+                `;
+                
+                resultsContainer.appendChild(cardDiv);
+            }
+        });
+        
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            document.getElementById('resultsContainer').innerHTML = `
+                <div class="result">
+                    <div style="text-align: center; color: rgba(255,255,255,0.5);">
+                        Cards will appear here
+                    </div>
+                </div>
+            `;
+        });
+        
+        // Helper functions
+        function generateCardNumber(type) {
+            let prefix = '';
+            let length = 16;
+            
+            switch(type) {
+                case 'visa':
+                    prefix = '4';
+                    break;
+                case 'mastercard':
+                    prefix = '5' + Math.floor(Math.random() * 5 + 1);
+                    break;
+                case 'amex':
+                    prefix = '3' + (Math.random() > 0.5 ? '4' : '7');
+                    length = 15;
+                    break;
+                case 'discover':
+                    prefix = '6011';
+                    break;
+                default:
+                    prefix = '4';
+            }
+            
+            let cardNumber = prefix;
+            while (cardNumber.length < length - 1) {
+                cardNumber += Math.floor(Math.random() * 10);
+            }
+            
+            // Simple Luhn check digit calculation
+            let sum = 0;
+            for (let i = 0; i < cardNumber.length; i++) {
+                let digit = parseInt(cardNumber[i]);
+                if (i % 2 === 0) {
+                    digit *= 2;
+                    if (digit > 9) digit -= 9;
+                }
+                sum += digit;
+            }
+            const checkDigit = (10 - (sum % 10)) % 10;
+            
+            return cardNumber + checkDigit;
+        }
+        
+        function formatCardNumber(number) {
+            return number.replace(/(\d{4})/g, '$1 ').trim();
+        }
+        
+        function generateExpiryDate() {
+            const month = Math.floor(Math.random() * 12) + 1;
+            const year = new Date().getFullYear() + Math.floor(Math.random() * 5) + 1;
+            return `${month.toString().padStart(2, '0')}/${year.toString().slice(-2)}`;
+        }
+        
+        function generateName() {
+            const firstNames = ['John', 'Jane', 'Robert', 'Emily', 'Michael', 'Sarah', 'David', 'Lisa'];
+            const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Miller', 'Davis', 'Garcia'];
+            return `${firstNames[Math.floor(Math.random() * firstNames.length)]} ${lastNames[Math.floor(Math.random() * lastNames.length)]}`;
+        }
+    </script>
+</body>
+</html>
